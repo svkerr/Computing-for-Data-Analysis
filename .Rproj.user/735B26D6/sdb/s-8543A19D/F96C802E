@@ -1,0 +1,16 @@
+{
+    "contents" : "complete <- function(directory, id) {\n  \n  ## 'directory' is a character vector of length 1 indicating\n  ## the location of the CSV files\n  ## 'id' is an integer vector indicating the monitor ID numbers\n  ## to be used\n  \n  nobs <- vector()\n  \n  for(i in id) {\n    # Convert directory and id to useable filename and path and get the file\n    filename <- paste(sprintf(\"%03.f\",i), \"csv\", sep = \".\")\n    path <- paste(directory, filename, sep = \"/\")\n    tempdata <- read.csv(path)\n    \n    # Process the file and get number of complete observation (nobs)\n    redcol <- subset(tempdata, select=c(sulfate,nitrate))\n    na_count <- apply(redcol,1, function(x) sum(is.na(x)))\n    nobs <- append(nobs, nrow(redcol[!(na_count > 0),]))\n  }\n  df <- data.frame(id,nobs)\n  return(df)\n}",
+    "created" : 1358037740956.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1219798234",
+    "id" : "F96C802E",
+    "lastKnownWriteTime" : 1358064767,
+    "path" : "~/R_Files/Computing for Data Analysis/complete.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

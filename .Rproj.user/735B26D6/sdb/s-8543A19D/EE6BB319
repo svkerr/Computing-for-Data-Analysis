@@ -1,0 +1,16 @@
+{
+    "contents" : "corr <- function(directory, threshold = 0){\n\n  # 'directory' is a character vector of length 1 indicating\n  # the location of the CSV files\n  \n  # 'threshold' is a numeric vector of length 1 indicating the\n  # number of completely observed observations (on all\n  # variables) required to compute the correlation between\n  # nitrate and sulfate; the default is 0\n  \n  # Return a numeric vector of correlations\n  \n  corvec <- vector(mode=\"numeric\")        # Declare vector to store cor values for each complete set\n  \n  filenames <- list.files(directory, pattern = \"*.csv\", full.names = TRUE) # Read in all CSV filenames\n  for (i in filenames) {\n    tempdata <- read.csv(i)\n    \n    # For each file find the number of complete obs in order to compare with threshold\n    \n    redcol <- subset(tempdata, select=c(sulfate,nitrate))\n    na_count <- apply(redcol,1, function(x) sum(is.na(x)))\n    comp_obs <- redcol[!(na_count > 0),]\n    nobs <- nrow(comp_obs)\n    if(nobs > threshold) {\n      cor_value <- cor(comp_obs$sulfate, comp_obs$nitrate)\n      corvec <- append(corvec, cor_value)\n    }  \n  }\n  return(corvec)\n}",
+    "created" : 1358140990774.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "799259046",
+    "id" : "EE6BB319",
+    "lastKnownWriteTime" : 1358266144,
+    "path" : "~/R_Files/Computing for Data Analysis/corr.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

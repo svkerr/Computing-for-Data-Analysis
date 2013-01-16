@@ -1,0 +1,21 @@
+{
+    "contents" : "",
+    "created" : 1357929329379.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "D96066E2",
+    "lastKnownWriteTime" : 399431958573,
+    "path" : null,
+    "properties" : {
+        "contentUrl" : "content?title=Data%3A+month_subset&file=b293cbb9fac348c399adbe78c9c054a7.htm",
+        "displayedObservations" : "30",
+        "displayedVariables" : 7,
+        "title" : "Data: month_subset",
+        "totalObservations" : "30",
+        "variables" : "6"
+    },
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}
