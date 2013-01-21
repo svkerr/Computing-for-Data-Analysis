@@ -10,8 +10,22 @@ best <- function(state, outcome) {
   if (!(state %in% data$State)) stop("Invalid State")            # check for valid state
   
   if (!(outcome %in% outcome_vec)) stop("Invalid Outcome")           # check for valid outcome
+  
+  red_data <- subset(data, select=c(Hospital.Name, Hospital.30.Day.Death..Mortality..Rates.from.Heart.Attack,
+                                    Hospital.30.Day.Death..Mortality..Rates.from.Heart.Failure,
+                                    Hospital.30.Day.Death..Mortality..Rates.from.Pneumonia),
+                                    subset = (State == state) )
+
+  if(outcome == "heart attack") {outcome_mod = red_data[,2]}
+  if(outcome == "heart failure") {outcome_mod = red_data[,3]}
+  if(outcome == "pneumonia") {outcome_mod = red_data[,4]}
+  
+  red_data_order <- red_data[order(outcome_mod, na.last = NA) ,]
+  
+  return(as.character(red_data_order[1,1]))
+  
 }
 
-sort(data[,11])                # this sorts from low to high death rates
+
 
 
