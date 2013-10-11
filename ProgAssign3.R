@@ -1,7 +1,7 @@
 #Programming Assignment #3
 
 # calculate medians
-med_ha <- median(outcome[,11], na.rm = TRUE)
+med_ha <- median(outcome[,11], na.rm = T?RUE)
 med_hf <- median(outcome[,17], na.rm = TRUE)
 med_pn <- median(outcome[,23], na.rm = TRUE)
 
